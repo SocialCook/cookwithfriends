@@ -29,6 +29,14 @@
   </head>
 
   <body>
+	  <div id="fb-root"></div>
+	  <script>(function(d, s, id) {
+	  	var js, fjs = d.getElementsByTagName(s)[0];
+	  	if (d.getElementById(id)) return;
+	  	js = d.createElement(s); js.id = id;
+	  	js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=348043128727600";
+	  	fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 
     <div class="site-wrapper">
 
@@ -41,8 +49,7 @@
               <h3 class="masthead-brand">Cook With Friends</h3>
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="login/index.html">Log In</a></li>
+                  <li class="active"><a href="index.html">Home</a></li>
                 </ul>
               </nav>
             </div>
@@ -51,8 +58,9 @@
           <div class="inner cover">
             <h1 class="cover-heading">Welcome to Cook With Friends</h1>
             <p class="lead">The foremost way to make plans to cook with your friends. Share the cost, time and work, all while enjoying the experience of cooking</p>
+            
             <p class="lead">
-              <a href="register/index.html" class="btn btn-lg btn-default">Sign Up</a>
+              <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
             </p>
           </div>
 
