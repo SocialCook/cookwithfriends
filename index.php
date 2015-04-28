@@ -40,11 +40,6 @@
                     <div class="inner">
                         <h3 class="masthead-brand">Cook With Friends</h3>
 
-                        <nav>
-                            <ul class="nav masthead-nav">
-                                <li class="active"><a href="index.php">Home</a></li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
 
@@ -58,7 +53,7 @@
                     <div class="fb-login-button" data-scope="public_profile,user_friends" onlogin = "window.location.replace('dashboard/index.php');" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
                     
                     
-                    <a class="btn btn-primary" href="https://www.facebook.com/dialog/oauth?client_id=348043128727600&redirect_uri=https://www.facebook.com/connect/login_success.html&response_type=token&scope=public_profile,user_friends" role="button">Login</a>
+                    <a class="btn btn-primary" href="https://www.facebook.com/dialog/oauth?client_id=348043128727600&redirect_uri=success.php&response_type=token&scope=public_profile,user_friends" role="button">Login</a>
                 </div>
 
                 <div class="mastfoot">
