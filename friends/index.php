@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
 
-    <title>Cook With Friends – Dashboard</title>
+    <title>Cook With Friends – Friends</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -40,17 +40,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">Cook With Friends</a>
+          <a class="navbar-brand" href="../dashboard/index.html">Cook With Friends</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="friends/index.html">Friends</a></li>
-            <li><a href="events/index.html">Events</a></li>
+            <li><a href="../dashboard/index.html">Home</a></li>
+            <li class="active"><a href="index.html">Friends</a></li>
+            <li><a href="../events/index.html">Events</a></li>
             
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="./">Logout <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#">Logout <span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
