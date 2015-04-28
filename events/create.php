@@ -57,9 +57,20 @@
     </nav>
 
     <div class="container">
+
+      <form>
+        <div class="form-group">
+          <label for="eventName">Event Name</label>
+          <input type="text" class="form-control" id="eventName" placeholder="Enter Event Name">
+        </div>
+       <div class="form-group">
+          <label for="dateTime">Event Date & Time</label>
+          <input type="datetime-local" class="form-control" id="eventDate">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      
 	    
-	    <a class="btn btn-default" href="#" role="button">Link</a>
-	    <a class="btn btn-success" href="#" role="button">Create Event</a>
 
       
     </div> <!-- /container -->
