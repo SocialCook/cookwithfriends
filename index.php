@@ -37,10 +37,7 @@
         <div class="site-wrapper-inner">
             <div class="cover-container">
                 <div class="masthead clearfix">
-                    <div class="inner">
-                        <h3 class="masthead-brand">Cook With Friends</h3>
 
-                    </div>
                 </div>
 
                 <div class="inner cover">
@@ -53,7 +50,7 @@
                     <div class="fb-login-button" data-scope="public_profile,user_friends" onlogin = "window.location.replace('dashboard/index.php');" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
                     
                     
-                    <a class="btn btn-primary" href="https://www.facebook.com/dialog/oauth?client_id=348043128727600&redirect_uri=success.php&response_type=token&scope=public_profile,user_friends" role="button">Login</a>
+                    <a class="btn btn-primary" href="https://www.facebook.com/dialog/oauth?client_id=348043128727600&redirect_uri=site_url('success.php')&response_type=token&scope=public_profile,user_friends" role="button">Login</a>
                 </div>
 
                 <div class="mastfoot">
