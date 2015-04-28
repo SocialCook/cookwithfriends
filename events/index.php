@@ -40,17 +40,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../dashboard/index.html">Cook With Friends</a>
+          <a class="navbar-brand" href="../dashboard/index.php">Cook With Friends</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="../dashboard/index.html">Home</a></li>
-            <li><a href="../friends/index.html">Friends</a></li>
-            <li class="active"><a href="index.html">Events</a></li>
+            <li><a href="../dashboard/index.php">Home</a></li>
+            <li><a href="../friends/index.php">Friends</a></li>
+            <li class="active"><a href="index.php">Events</a></li>
             
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#">Logout <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="../logout.php">Logout <span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -69,9 +69,9 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
 
