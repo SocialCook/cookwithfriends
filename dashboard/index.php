@@ -60,8 +60,6 @@ session_start();
     </nav>
 
     <div class="container">
-        <h3>Hello INSERT NAME HERE </h3>
-        maybe profile picture on the left?
 
         <?php
           $curl = curl_init("https://graph.facebook.com/me?access_token=".$_SESSION['token']);
@@ -69,8 +67,11 @@ session_start();
             CURLOPT_RETURNTRANSFER => 1,
             ));
           $result = curl_exec($curl);
-          var_dump(json_decode($result, true));
+          $json = json_decode($result, true);
           curl_close($curl);
+          $_SESSION['id'] = $json["id"];
+          echo "<h3>Hello ".$json['first_name']." ".$json['last_name']."</h3>";
+
         ?>
       
     </div> <!-- /container -->
