@@ -40,7 +40,7 @@
       <div>
         <h1>Quick question for you:</h1>
         
-        <form name="haskitchen" id="haskitchen" method="get" action="newuser.html">
+        <form name="haskitchen" id="haskitchen" method="get" action="newuser.php">
 		<h3>Do you have a kitchen?</h3>
 		<div class="radio">
 				<li><input type="radio" name="kitchen" value="Yes" class="kitchenq" /> Yes</li>
@@ -48,7 +48,7 @@
     	</div>
 		<div class="form-group" name="hidden" id="hidden">
 		<label for="address">What is your address?</label>
-      <input type="text" class="form-control" id="address" placeholder="Enter Your Address">
+      <input type="text" name="address" class="form-control" id="address" placeholder="Enter Your Address">
     </div>
     
     <button type="submit" class="btn btn-default">Submit</button>
