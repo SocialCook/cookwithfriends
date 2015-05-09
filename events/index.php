@@ -1,3 +1,7 @@
+<?php
+  include "../connect.php";
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -57,9 +61,19 @@
     </nav>
 
     <div class="container">
-	    
-	    <a class="btn btn-default" href="#" role="button">Link</a>
-	    <a class="btn btn-success" href="#" role="button">Create Event</a>
+	    <h3>You are currently attending:</h3>
+      <?php
+      if($stmt = $mysqli->prepare('SELECT e_name, e_id from event natural join attending where user_id = ?')){
+        $stmt->bind_param('i', $_SESSION['id']);
+        $stmt->execute();
+        $stmt->bind_result($events, $eid);
+        while($stmt->fetch()){
+            echo '<a class="btn btn-lg btn-default" href="details.php?id='.$eid.'" role="button">'.$events.'</a><br>';
+        }
+        $stmt->close();
+      }
+      ?>
+	    <br><a class="btn btn-success" href="create.php" role="button">Create Event</a>
 
       
     </div> <!-- /container -->
