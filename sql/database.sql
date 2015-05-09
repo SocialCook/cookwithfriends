@@ -3,7 +3,7 @@ create database if not exists cookingwithfriends;
 	use cookingwithfriends;
 	-- user
 	create table user(
-		user_id int,
+		user_id bigint,
 		has_kitchen int,
 		address varchar(1000),
 		PRIMARY KEY (email)
@@ -18,7 +18,7 @@ create database if not exists cookingwithfriends;
 	);
 	-- Attending relation between user and event
 	create table attending(
-		user_id int,
+		user_id bigint,
 		e_id integer,
 		PRIMARY KEY (user_id, e_id),
 		FOREIGN KEY (user_id) REFERENCES user(user_id),
