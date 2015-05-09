@@ -6,7 +6,7 @@ create database if not exists cookingwithfriends;
 		user_id bigint,
 		has_kitchen int,
 		address varchar(1000),
-		PRIMARY KEY (email)
+		PRIMARY KEY (user_id)
 	);
 	-- Events
 	create table event(
