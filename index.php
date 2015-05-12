@@ -30,7 +30,6 @@
                 <div class="masthead clearfix">
 
                 </div>
-
                 <div class="inner cover">
                     <h1 class="cover-heading">Welcome to Cook With Friends</h1>
 

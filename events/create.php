@@ -106,6 +106,8 @@ include '../connect.php';
           $stmt->bind_param('ii', $_SESSION['id'], $store[0]);
           $stmt->execute();
           $stmt->close();
+
+          echo '<script>window.location.replace("index.php")</script>';
         }
       ?>      
     </div> <!-- /container -->

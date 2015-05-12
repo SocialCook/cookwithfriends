@@ -69,7 +69,6 @@ session_start();
           $result = curl_exec($curl);
           $json = json_decode($result, true);
           curl_close($curl);
-          $_SESSION['id'] = $json["id"];
           echo "<h3>Hello ".$json['first_name']." ".$json['last_name']."</h3>";
 
         ?>

@@ -58,7 +58,9 @@
 
     <div class="container">
 	    <h2>Event Details</h2>
-
+      Test if user is attending<br>
+      If he is attending then allow the user to leave<br>
+      if he is attending then allow the user to see the address of event
       
     </div> <!-- /container -->
 
