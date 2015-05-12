@@ -1,3 +1,7 @@
+<?php
+session_start();
+include '../connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,7 +64,30 @@
 	    <h2>Event Details</h2>
       Test if user is attending<br>
       If he is attending then allow the user to leave<br>
-      if he is attending then allow the user to see the address of event
+      if he is attending then allow the user to see the address of event<br>
+
+      <?php
+        $stmt = $mysqli->prepare('SELECT e_name, date_time, address from event where e_id = ?');
+        $stmt->bind_param('i', $_GET['id']);
+        $stmt->execute();
+        $stmt->bind_result($ename, $edt, $address);
+        $store = array();
+        if($stmt->fetch()){
+          echo "Event: ".$ename."<br>Date and time: ".$edt."<br>";
+          $store[] = $address;
+        }
+        $stmt->close();
+
+        $stmt = $mysqli->prepare('SELECT e_id from attending where e_id=? and user_id=?');
+        $stmt->bind_param('ii', $_GET['id'], $_SESSION['id']);
+        $stmt->execute();
+        if($stmt->fetch()){
+          echo "Address: ".$store[0];
+          echo '<br><a class="btn btn-danger" href="remove.php?id='.$_GET['id'].'" role="button">Leave Event</a><br>';
+        }
+        $stmt->close();
+        
+      ?>
       
     </div> <!-- /container -->
 
