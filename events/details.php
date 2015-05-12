@@ -62,10 +62,6 @@ include '../connect.php';
 
     <div class="container">
 	    <h2>Event Details</h2>
-      Test if user is attending<br>
-      If he is attending then allow the user to leave<br>
-      if he is attending then allow the user to see the address of event<br>
-
       <?php
         $stmt = $mysqli->prepare('SELECT e_name, date_time, address from event where e_id = ?');
         $stmt->bind_param('i', $_GET['id']);
