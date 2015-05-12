@@ -1,3 +1,8 @@
+<?php
+session_start();
+include '../connect.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -58,21 +63,51 @@
 
     <div class="container">
 
-      <form>
+      <form action="create.php" method="post">
         <div class="form-group">
           <label for="eventName">Event Name</label>
-          <input type="text" class="form-control" id="eventName" placeholder="Enter Event Name">
+          <input type="text" class="form-control" id="eventName" name = "event_name" placeholder="Enter Event Name" required>
         </div>
        <div class="form-group">
           <label for="dateTime">Event Date & Time</label>
-          <input type="datetime-local" class="form-control" id="eventDate">
+          <input type="datetime-local" class="form-control" id="eventDate" name="edt" required>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       
-	    
+	    <?php
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
 
-      
+          $stmt = $mysqli->prepare('SELECT address from user where user_id = ?');
+          $stmt->bind_param('i', $_SESSION['id']);
+          $stmt->execute();
+          $stmt->bind_result($temp1);
+          $address = array();
+          if($stmt->fetch()){
+            $address[] = $temp1;
+          }
+          $stmt->close();
+
+          $stmt = $mysqli->prepare('INSERT INTO event values(NULL, ?, ?, ?)');
+          $stmt->bind_param('sss', $_POST['event_name'], $_POST['edt'], $address[0]);
+          $stmt->execute();
+          $stmt->close();
+
+          $stmt = $mysqli->prepare('SELECT e_id from event group by e_id DESC');
+          $stmt->execute();
+          $stmt->bind_result($newevent);
+          $store = array();
+          if($stmt->fetch()){
+            $store[] = $newevent;
+          }
+          $stmt->close();
+
+          $stmt = $mysqli->prepare('INSERT INTO attending values(?, ?)');
+          $stmt->bind_param('ii', $_SESSION['id'], $store[0]);
+          $stmt->execute();
+          $stmt->close();
+        }
+      ?>      
     </div> <!-- /container -->
 
 
