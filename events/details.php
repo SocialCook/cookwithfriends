@@ -82,6 +82,15 @@ include '../connect.php';
           echo '<br><a class="btn btn-danger" href="remove.php?id='.$_GET['id'].'" role="button">Leave Event</a><br>';
         }
         $stmt->close();
+
+        $stmt = $mysqli->prepare('SELECT user_id from host where e_id = ?');
+        $stmt->bind_param('i', $_GET['id']);
+        $stmt->execute();
+        $stmt->bind_result($host);
+        if($stmt->fetch()){
+          echo '<br><a class="btn btn-success" href="friends.php?id='.$_GET['id'].'" role="button">Invite</a><br>';
+        }
+        $stmt->close();
         
       ?>
       

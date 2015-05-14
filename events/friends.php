@@ -62,59 +62,28 @@ include '../connect.php';
     </nav>
 
     <div class="container">
+      <?php
+      $curl = curl_init("https://graph.facebook.com/me/friends?access_token=".$_SESSION['token']);
+      curl_setopt_array($curl, array(
+        CURLOPT_RETURNTRANSFER => 1,
+      ));
+      $result = curl_exec($curl);
+      $json = json_decode($result, true);
+      curl_close($curl);
+      //print_r($json['data']);
+      foreach($json['data'] as $friend){
+        //echo "Friend: ".$friend['name']." ID: ".$friend['id']."<br>";
+        echo '<br><a class="btn btn-primary" href="friends.php?id='.$_GET['id'].'&fid='.$friend['id'].'" role="button">'.$friend['name'].'</a><br>';
+      }
 
-      <form action="create.php" method="post">
-        <div class="form-group">
-          <label for="eventName">Event Name</label>
-          <input type="text" class="form-control" id="eventName" name = "event_name" placeholder="Enter Event Name" required>
-        </div>
-       <div class="form-group">
-          <label for="dateTime">Event Date & Time</label>
-          <input type="datetime-local" class="form-control" id="eventDate" name="edt" required>
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      
-	    <?php
-        if($_SERVER['REQUEST_METHOD'] == "POST"){
+      if(isset($_GET['fid'])){
+        $stmt = $mysqli->prepare('INSERT INTO attending values(?, ?)');
+        $stmt->bind_param('ii', $_GET['fid', $_GET['id']]);
+        $stmt->execute();
+        $stmt->close();
+      }
+      ?>
 
-          $stmt = $mysqli->prepare('SELECT address from user where user_id = ?');
-          $stmt->bind_param('i', $_SESSION['id']);
-          $stmt->execute();
-          $stmt->bind_result($temp1);
-          $address = array();
-          if($stmt->fetch()){
-            $address[] = $temp1;
-          }
-          $stmt->close();
-
-          $stmt = $mysqli->prepare('INSERT INTO event values(NULL, ?, ?, ?)');
-          $stmt->bind_param('sss', $_POST['event_name'], $_POST['edt'], $address[0]);
-          $stmt->execute();
-          $stmt->close();
-
-          $stmt = $mysqli->prepare('SELECT e_id from event group by e_id DESC');
-          $stmt->execute();
-          $stmt->bind_result($newevent);
-          $store = array();
-          if($stmt->fetch()){
-            $store[] = $newevent;
-          }
-          $stmt->close();
-
-          $stmt = $mysqli->prepare('INSERT INTO attending values(?, ?)');
-          $stmt->bind_param('ii', $_SESSION['id'], $store[0]);
-          $stmt->execute();
-          $stmt->close();
-
-          $stmt = $mysqli->prepare('INSERT INTO host values(?, ?)');
-          $stmt->bind_param('ii', $_SESSION['id'], $store[0]);
-          $stmt->execute();
-          $stmt->close();
-
-          echo '<script>window.location.replace("index.php")</script>';
-        }
-      ?>      
     </div> <!-- /container -->
 
 
