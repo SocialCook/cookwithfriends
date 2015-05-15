@@ -14,7 +14,7 @@ include '../connect.php';
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
 
-    <title>Cook With Friends – Events</title>
+    <title>Cook With Friends – Create Event</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,6 @@ include '../connect.php';
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="../dashboard/index.php">Home</a></li>
-            <li><a href="../friends/index.php">Friends</a></li>
             <li class="active"><a href="index.php">Events</a></li>
             
           </ul>

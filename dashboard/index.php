@@ -48,7 +48,6 @@ session_start();
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.php">Home</a></li>
-            <li><a href="../friends/index.php">Friends</a></li>
             <li><a href="../events/index.php">Events</a></li>
             
           </ul>
