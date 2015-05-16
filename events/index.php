@@ -1,3 +1,7 @@
+<?php
+  include "../connect.php";
+  session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +13,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
 
-    <title>Cook With Friends – Events</title>
+    <title>FoodGroups – Events</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -40,12 +44,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../dashboard/index.php">Cook With Friends</a>
+          <a class="navbar-brand" href="../dashboard/index.php">FoodGroups</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="../dashboard/index.php">Home</a></li>
-            <li><a href="../friends/index.php">Friends</a></li>
             <li class="active"><a href="index.php">Events</a></li>
             
           </ul>
@@ -57,9 +60,19 @@
     </nav>
 
     <div class="container">
-	    
-	    <a class="btn btn-default" href="#" role="button">Link</a>
-	    <a class="btn btn-success" href="#" role="button">Create Event</a>
+	    <h3>You are currently attending:</h3>
+      <?php
+      if($stmt = $mysqli->prepare('SELECT e_name, e_id from event natural join attending where user_id = ?')){
+        $stmt->bind_param('i', $_SESSION['id']);
+        $stmt->execute();
+        $stmt->bind_result($events, $eid);
+        while($stmt->fetch()){
+            echo '<a class="btn btn-lg btn-default" href="details.php?id='.$eid.'" role="button">'.$events.'</a><br>';
+        }
+        $stmt->close();
+      }
+      ?>
+	    <br><a class="btn btn-success" href="create.php" role="button">Create Event</a>
 
       
     </div> <!-- /container -->

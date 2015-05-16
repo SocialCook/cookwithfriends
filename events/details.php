@@ -1,3 +1,7 @@
+<?php
+session_start();
+include '../connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +13,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
 
-    <title>FoodGroups – Friends</title>
+    <title>FoodGroups – Event Details</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -45,7 +49,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="../dashboard/index.php">Home</a></li>
-            <li><a href="../events/index.php">Events</a></li>
+            <li class="active"><a href="index.php">Events</a></li>
             
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -56,7 +60,38 @@
     </nav>
 
     <div class="container">
+	    <h2>Event Details</h2>
+      <?php
+        $stmt = $mysqli->prepare('SELECT e_name, date_time, address from event where e_id = ?');
+        $stmt->bind_param('i', $_GET['id']);
+        $stmt->execute();
+        $stmt->bind_result($ename, $edt, $address);
+        $store = array();
+        if($stmt->fetch()){
+          echo "Event: ".$ename."<br>Date and time: ".$edt."<br>";
+          $store[] = $address;
+        }
+        $stmt->close();
 
+        $stmt = $mysqli->prepare('SELECT e_id from attending where e_id=? and user_id=?');
+        $stmt->bind_param('ii', $_GET['id'], $_SESSION['id']);
+        $stmt->execute();
+        if($stmt->fetch()){
+          echo "Address: ".$store[0];
+          echo '<br><a class="btn btn-danger" href="remove.php?id='.$_GET['id'].'" role="button">Leave Event</a><br>';
+        }
+        $stmt->close();
+
+        $stmt = $mysqli->prepare('SELECT user_id from host where e_id = ?');
+        $stmt->bind_param('i', $_GET['id']);
+        $stmt->execute();
+        $stmt->bind_result($host);
+        if($stmt->fetch()){
+          echo '<br><a class="btn btn-success" href="friends.php?id='.$_GET['id'].'" role="button">Invite</a><br>';
+        }
+        $stmt->close();
+        
+      ?>
       
     </div> <!-- /container -->
 

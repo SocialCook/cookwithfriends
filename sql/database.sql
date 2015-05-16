@@ -24,3 +24,11 @@ create database if not exists cookingwithfriends;
 		FOREIGN KEY (user_id) REFERENCES user(user_id),
 		FOREIGN KEY (e_id) REFERENCES event(e_id)
 	);
+
+		create table host(
+		user_id bigint,
+		e_id integer,
+		PRIMARY KEY (user_id, e_id),
+		FOREIGN KEY (user_id) REFERENCES user(user_id),
+		FOREIGN KEY (e_id) REFERENCES event(e_id)
+	);

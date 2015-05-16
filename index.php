@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Cook With Friends</title><!-- Bootstrap core CSS -->
+    <title>FoodGroups</title><!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"><!-- Custom styles for this template -->
     <link href="css/cover.css" rel="stylesheet" type="text/css"><!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -30,9 +30,8 @@
                 <div class="masthead clearfix">
 
                 </div>
-
                 <div class="inner cover">
-                    <h1 class="cover-heading">Welcome to Cook With Friends</h1>
+                    <h1 class="cover-heading">Welcome to FoodGroups</h1>
 
                     <p class="lead">The foremost way to make plans to cook with your friends. Share the cost, time and work, all while enjoying the experience of cooking</p>
 
@@ -46,7 +45,7 @@
 
                 <div class="mastfoot">
                     <div class="inner">
-                        <p>Cook With Friends is a service brought to you by College Cook</p>
+                        <p>FoodGroups is a service brought to you by College Cook &copy; 2015.</p>
                     </div>
                 </div>
             </div>

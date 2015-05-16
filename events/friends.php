@@ -1,3 +1,8 @@
+<?php
+session_start();
+include '../connect.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +14,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
 
-    <title>Cook With Friends – Events</title>
+    <title>FoodGroups – Events</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -40,12 +45,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="../dashboard/index.php">Cook With Friends</a>
+          <a class="navbar-brand" href="../dashboard/index.php">FoodGroups</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="../dashboard/index.php">Home</a></li>
-            <li><a href="../friends/index.php">Friends</a></li>
             <li class="active"><a href="index.php">Events</a></li>
             
           </ul>
@@ -57,9 +61,28 @@
     </nav>
 
     <div class="container">
-	    <h2>Event Details</h2>
+      <?php
+      $curl = curl_init("https://graph.facebook.com/me/friends?access_token=".$_SESSION['token']);
+      curl_setopt_array($curl, array(
+        CURLOPT_RETURNTRANSFER => 1,
+      ));
+      $result = curl_exec($curl);
+      $json = json_decode($result, true);
+      curl_close($curl);
+      //print_r($json['data']);
+      foreach($json['data'] as $friend){
+        //echo "Friend: ".$friend['name']." ID: ".$friend['id']."<br>";
+        echo '<br><a class="btn btn-primary" href="friends.php?id='.$_GET['id'].'&fid='.$friend['id'].'" role="button">'.$friend['name'].'</a><br>';
+      }
 
-      
+      if(isset($_GET['fid'])){
+        $stmt = $mysqli->prepare('INSERT INTO attending values(?, ?)');
+        $stmt->bind_param('ii', $_GET['fid', $_GET['id']]);
+        $stmt->execute();
+        $stmt->close();
+      }
+      ?>
+
     </div> <!-- /container -->
 
 

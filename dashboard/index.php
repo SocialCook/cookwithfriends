@@ -12,13 +12,14 @@ session_start();
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
 
-    <title>Cook With Friends – Dashboard</title>
+    <title>FoodGroups – Dashboard</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="../css/navbar-fixed-top.css" rel="stylesheet">
+    <link href="../css/carousel.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -43,12 +44,11 @@ session_start();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Cook With Friends</a>
+          <a class="navbar-brand" href="index.php">FoodGroups</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="index.php">Home</a></li>
-            <li><a href="../friends/index.php">Friends</a></li>
             <li><a href="../events/index.php">Events</a></li>
             
           </ul>
@@ -69,10 +69,36 @@ session_start();
           $result = curl_exec($curl);
           $json = json_decode($result, true);
           curl_close($curl);
-          $_SESSION['id'] = $json["id"];
-          echo "<h3>Hello ".$json['first_name']." ".$json['last_name']."</h3>";
+          echo "<h1>Hello ".$json['first_name']." ".$json['last_name']."</h1>";
 
         ?>
+        <br>
+        <h4>The next event you are attending is: </h4>
+        <br>
+        
+        <h3>Need some inspiration or ideas for what to cook with your FoodGroups? Check out these featured recipes:</h3>
+        <br><br>
+        <div class="container marketing">
+        <div class="col-lg-4">
+	      
+          <img src="/images/r1.jpg" class="img-circle" width="140" height="140">
+          <h4>Chicken, Shrimp and Andouille Jambalaya</h4>
+          <p>A Cajun classic, meal in one pot! Have the hot sauce ready to splash on. Serve with some crusty french bread, a nice crisp salad, and some of your favorite wine.</p>
+          <p><a class="btn btn-default" href="http://www.food.com/recipe/chicken-shrimp-and-andouille-jambalaya-28165" target="_blank" role="button">View recipe &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle" src="/images/r2.jpeg" width="140" height="140">
+          <h4>Four-Cheese Scalloped Potatoes</h4>
+          <p>To make this decadent side dish, layer thinly sliced potatoes with heavy cream and mozzarella, asiago and raclette cheeses. Top with Parmesan cheese and bake until bubbly.</p>
+          <p><a class="btn btn-default" href="http://www.foodnetwork.com/recipes/food-network-kitchens/four-cheese-scalloped-potatoes-recipe.html" target="_blank" role="button">View recipe &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle" src="/images/r3.jpg" alt="Generic placeholder image" width="140" height="140">
+          <h4>Easy Tilapia with Wine and Tomatoes</h4>
+          <p>This is a super quick, super easy recipe that is sure to please. Tilapia fillets are easy to cook on the grill in a foil bag, or can be just as easily baked in the oven.</p>
+          <p><a class="btn btn-default" href="http://allrecipes.com/Recipe/Easy-Tilapia-with-Wine-and-Tomatoes/?prop31=1&evt19=1" target="_blank" role="button">View recipe &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
       
     </div> <!-- /container -->
 

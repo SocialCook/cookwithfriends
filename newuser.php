@@ -1,3 +1,7 @@
+<?php
+session_start();
+include 'connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,7 +13,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>Starter Template for Bootstrap</title>
+    <title>New User Details</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -36,27 +40,64 @@
 
     
     <div class="container">
+      <?php
+        $curl = curl_init("https://graph.facebook.com/me?access_token=".$_SESSION['token']);
+        curl_setopt_array($curl, array(
+          CURLOPT_RETURNTRANSFER => 1,
+          ));
+        $result = curl_exec($curl);
+        $json = json_decode($result, true);
+        curl_close($curl);
+        $_SESSION['id'] = $json["id"];
 
-      <div>
-        <h1>Quick question for you:</h1>
-        
-        <form name="haskitchen" id="haskitchen" method="get" action="newuser.html">
-		<h3>Do you have a kitchen?</h3>
-		<div class="radio">
-				<li><input type="radio" name="kitchen" value="Yes" class="kitchenq" /> Yes</li>
-				<li><input type="radio" name="kitchen" value="No" class="kitchenq" /> No</li>
-    	</div>
-		<div class="form-group" name="hidden" id="hidden">
-		<label for="address">What is your address?</label>
-      <input type="text" class="form-control" id="address" placeholder="Enter Your Address">
-    </div>
-    
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-      </div>
+
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+          if($_POST['kitchen'] == 1){
+            $stmt = $mysqli->prepare('INSERT INTO user values (?, "1", ?)');
+            $stmt->bind_param('is', $_SESSION['id'], $_POST['address']);
+            $stmt->execute();
+            $stmt->close();
+            echo '<script>window.location.replace("dashboard/index.php")</script>';
+          }
+          else{
+            $stmt = $mysqli->prepare('INSERT INTO user values (?, "0", NULL)');
+            $stmt->bind_param('i', $_SESSION['id']);
+            $stmt->execute();
+            $stmt->close();
+            echo '<script>window.location.replace("dashboard/index.php")</script>';
+          }
+        }
+        else{
+          $stmt = $mysqli->prepare('SELECT user_id from user where user_id = ?');
+          $stmt->bind_param('i', $_SESSION['id']);
+          $stmt->execute();
+          $stmt->bind_result($testuser);
+
+          if($stmt->fetch()){
+            echo '<script>window.location.replace("dashboard/index.php")</script>';
+            $stmt->close();
+          }
+          else{
+            echo'
+              <h1>Quick question for you:</h1>
+              <form name="haskitchen" id="haskitchen" method="post" action="newuser.php">
+                <h3>Do you have a kitchen?</h3>
+                <div class="radio">
+                  <li><input type="radio" name="kitchen" value="1" class="kitchenq" /> Yes</li>
+                  <li><input type="radio" name="kitchen" value="0" class="kitchenq" /> No</li>
+                </div>
+                <div class="form-group" name="hidden" id="hidden">
+                  <label for="address">What is your address?</label>
+                  <input type="text" name="address" class="form-control" id="address" placeholder="Enter Your Address">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+              </form>
+          ';
+          }
+        }
+      ?>
 
     </div><!-- /.container -->
-
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

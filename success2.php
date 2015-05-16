@@ -10,7 +10,7 @@
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
 	session_start();
 	$_SESSION['token'] = $_GET['token'];
-	echo "<script>window.location.href = 'dashboard/index.php'</script>";
+	echo "<script>window.location.href = 'newuser.php'</script>";
 }
 ?>
 
