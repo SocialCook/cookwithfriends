@@ -2,6 +2,7 @@
 session_start();
 include '../connect.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,7 +14,7 @@ include '../connect.php';
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
 
-    <title>FoodGroups – Event Details</title>
+    <title>FoodGroups – Create Event</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -60,39 +61,59 @@ include '../connect.php';
     </nav>
 
     <div class="container">
-	    <h2>Event Details</h2>
-      <?php
-        $stmt = $mysqli->prepare('SELECT e_name, date_time, address from event where e_id = ?');
-        $stmt->bind_param('i', $_GET['id']);
-        $stmt->execute();
-        $stmt->bind_result($ename, $edt, $address);
-        $store = array();
-        if($stmt->fetch()){
-          echo "Event: ".$ename."<br>Date and time: ".$edt."<br>";
-          $store[] = $address;
-        }
-        $stmt->close();
 
-        $stmt = $mysqli->prepare('SELECT e_id from attending where e_id=? and user_id=?');
-        $stmt->bind_param('ii', $_GET['id'], $_SESSION['id']);
-        $stmt->execute();
-        if($stmt->fetch()){
-          echo "Address: ".$store[0];
-          echo '<br><a class="btn btn-danger" href="remove.php?id='.$_GET['id'].'" role="button">Leave Event</a><br>';
-        }
-        $stmt->close();
-
-        $stmt = $mysqli->prepare('SELECT user_id from host where e_id = ?');
-        $stmt->bind_param('i', $_GET['id']);
-        $stmt->execute();
-        $stmt->bind_result($host);
-        if($stmt->fetch()){
-          echo '<br><a class="btn btn-success" href="friends.php?id='.$_GET['id'].'" role="button">Invite</a><br>';
-        }
-        $stmt->close();
-        
-      ?>
+      <form action="create.php" method="post">
+        <div class="form-group">
+          <label for="eventName">Event Name</label>
+          <input type="text" class="form-control" id="eventName" name = "event_name" placeholder="Enter Event Name" required>
+        </div>
+       <div class="form-group">
+          <label for="dateTime">Event Date & Time</label>
+          <input type="datetime-local" class="form-control" id="eventDate" name="edt" required>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
       
+      <?php
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+          $stmt = $mysqli->prepare('SELECT address from user where user_id = ?');
+          $stmt->bind_param('i', $_SESSION['id']);
+          $stmt->execute();
+          $stmt->bind_result($temp1);
+          $address = array();
+          if($stmt->fetch()){
+            $address[] = $temp1;
+          }
+          $stmt->close();
+
+          $stmt = $mysqli->prepare('INSERT INTO event values(NULL, ?, ?, ?)');
+          $stmt->bind_param('sss', $_POST['event_name'], $_POST['edt'], $address[0]);
+          $stmt->execute();
+          $stmt->close();
+
+          $stmt = $mysqli->prepare('SELECT e_id from event group by e_id DESC');
+          $stmt->execute();
+          $stmt->bind_result($newevent);
+          $store = array();
+          if($stmt->fetch()){
+            $store[] = $newevent;
+          }
+          $stmt->close();
+
+          $stmt = $mysqli->prepare('INSERT INTO attending values(?, ?)');
+          $stmt->bind_param('ii', $_SESSION['id'], $store[0]);
+          $stmt->execute();
+          $stmt->close();
+
+          $stmt = $mysqli->prepare('INSERT INTO host values(?, ?)');
+          $stmt->bind_param('ii', $_SESSION['id'], $store[0]);
+          $stmt->execute();
+          $stmt->close();
+
+          echo '<script>window.location.replace("index.php")</script>';
+        }
+      ?>      
     </div> <!-- /container -->
 
 
