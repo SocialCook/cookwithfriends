@@ -1,5 +1,6 @@
 <?php
 session_start();
+include '../connect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +78,17 @@ session_start();
 
         ?>
         <br>
-        <h4>The next event you are attending is: </h4>
+        <?php
+        echo '<h4>The next event you are attending is: ';
+        $stmt = $mysqli->prepare('SELECT e_name from event natural join attending where user_id = ? and datediff(date_time, now())  > 0');
+        $stmt->bind_param('i', $_SESSION['id']);
+        $stmt->execute();
+        $stmt->bind_result($event);
+        if($stmt->fetch()){
+          echo $event.'</h4>';
+        }
+        $stmt->close();
+        ?>
         <br>
         
         <h3>Need some inspiration or ideas for what to cook with your FoodGroups?<br> Check out these featured recipes:</h3>
