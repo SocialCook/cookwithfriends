@@ -76,24 +76,24 @@ session_start();
         <h4>The next event you are attending is: </h4>
         <br>
         
-        <h3>Need some inspiration or ideas for what to cook with your FoodGroups? Check out these featured recipes:</h3>
+        <h3>Need some inspiration or ideas for what to cook with your FoodGroups?<br> Check out these featured recipes:</h3>
         <br><br>
         <div class="container marketing">
         <div class="col-lg-4">
 	      
-          <img src="/images/r1.jpg" class="img-circle" width="140" height="140">
+          <img src="../images/r1.jpg" class="img-circle" width="140" height="140">
           <h4>Chicken, Shrimp and Andouille Jambalaya</h4>
           <p>A Cajun classic, meal in one pot! Have the hot sauce ready to splash on. Serve with some crusty french bread, a nice crisp salad, and some of your favorite wine.</p>
           <p><a class="btn btn-default" href="http://www.food.com/recipe/chicken-shrimp-and-andouille-jambalaya-28165" target="_blank" role="button">View recipe &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="/images/r2.jpeg" width="140" height="140">
+          <img class="img-circle" src="../images/r2.jpeg" width="140" height="140">
           <h4>Four-Cheese Scalloped Potatoes</h4>
           <p>To make this decadent side dish, layer thinly sliced potatoes with heavy cream and mozzarella, asiago and raclette cheeses. Top with Parmesan cheese and bake until bubbly.</p>
           <p><a class="btn btn-default" href="http://www.foodnetwork.com/recipes/food-network-kitchens/four-cheese-scalloped-potatoes-recipe.html" target="_blank" role="button">View recipe &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
-          <img class="img-circle" src="/images/r3.jpg" alt="Generic placeholder image" width="140" height="140">
+          <img class="img-circle" src="../images/r3.jpg" alt="Generic placeholder image" width="140" height="140">
           <h4>Easy Tilapia with Wine and Tomatoes</h4>
           <p>This is a super quick, super easy recipe that is sure to please. Tilapia fillets are easy to cook on the grill in a foil bag, or can be just as easily baked in the oven.</p>
           <p><a class="btn btn-default" href="http://allrecipes.com/Recipe/Easy-Tilapia-with-Wine-and-Tomatoes/?prop31=1&evt19=1" target="_blank" role="button">View recipe &raquo;</a></p>
