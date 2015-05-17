@@ -13,7 +13,11 @@ include '../connect.php';
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
-
+    <?php
+      if(!isset($_SESSION['id'])){
+        echo "<script>window.location.replace('../index.php')</script>";
+      }
+    ?>
     <title>FoodGroups – Create Event</title>
 
     <!-- Bootstrap core CSS -->
