@@ -77,7 +77,7 @@ include '../connect.php';
 
       if(isset($_GET['fid'])){
         $stmt = $mysqli->prepare('INSERT INTO attending values(?, ?)');
-        $stmt->bind_param('ii', $_GET['fid', $_GET['id']]);
+        $stmt->bind_param('ii', $_GET['fid'], $_GET['id']);
         $stmt->execute();
         $stmt->close();
       }

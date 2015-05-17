@@ -71,7 +71,7 @@ include '../connect.php';
           <label for="dateTime">Event Date & Time</label>
           <input type="datetime-local" class="form-control" id="eventDate" name="edt" required>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-success">Submit</button>
       </form>
       
 	    <?php

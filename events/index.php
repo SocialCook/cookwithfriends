@@ -67,7 +67,7 @@
         $stmt->execute();
         $stmt->bind_result($events, $eid);
         while($stmt->fetch()){
-            echo '<a class="btn btn-lg btn-default" href="details.php?id='.$eid.'" role="button">'.$events.'</a><br>';
+            echo '<a class="btn btn-lg btn-default" href="details.php?id='.$eid.'" role="button">'.$events.'</a><br><br>';
         }
         $stmt->close();
       }
