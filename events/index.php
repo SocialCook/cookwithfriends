@@ -67,7 +67,7 @@
     <div class="container">
 	    <h3>You are currently attending:</h3>
       <?php
-      if($stmt = $mysqli->prepare('SELECT e_name, e_id from event natural join attending where user_id = ?')){
+      if($stmt = $mysqli->prepare('SELECT e_name, e_id from event natural join attending where user_id = ? and datediff(date_time, now()) > 0')){
         $stmt->bind_param('i', $_SESSION['id']);
         $stmt->execute();
         $stmt->bind_result($events, $eid);
