@@ -97,6 +97,9 @@ include '../connect.php';
         
       ?>
       
+      <h3>Be sure to make the most of your FoodGroup! There are 5 people attending this event, suggested workload split:</h3>
+      <h4>2 people on stove/oven duty<br>2 people prepare ingredients<br>1 runner – everybody's helper. Help with cooking implements and on the go cleanup</h4>
+      
     </div> <!-- /container -->
 
 
